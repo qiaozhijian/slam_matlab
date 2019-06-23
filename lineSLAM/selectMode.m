@@ -1,26 +1,50 @@
-function [outputArg1] = selectMode(mode)
-%UNTITLED6 ´Ë´¦ÏÔÊ¾ÓÐ¹Ø´Ëº¯ÊýµÄÕªÒª
-%   ´Ë´¦ÏÔÊ¾ÏêÏ¸ËµÃ÷
-if mode=="mode1"
-    rmpath([pwd '\lineSLAM\Opti\Opti2'])
-    rmpath([pwd '\lineSLAM\Opti\Opti3'])
-    rmpath([pwd '\lineSLAM\Opti\Opti4'])
-    addpath([pwd '\lineSLAM\Opti\Opti1'])
-elseif mode=="mode2"
-    rmpath([pwd '\lineSLAM\Opti\Opti1'])
-    rmpath([pwd '\lineSLAM\Opti\Opti3'])
-    rmpath([pwd '\lineSLAM\Opti\Opti4'])
-    addpath([pwd '\lineSLAM\Opti\Opti2'])
-elseif mode=="mode3"
-    rmpath([pwd '\lineSLAM\Opti\Opti1'])
-    rmpath([pwd '\lineSLAM\Opti\Opti2'])
-    rmpath([pwd '\lineSLAM\Opti\Opti4'])
-    addpath([pwd '\lineSLAM\Opti\Opti3'])
-elseif mode=="mode4"
-    rmpath([pwd '\lineSLAM\Opti\Opti1'])
-    rmpath([pwd '\lineSLAM\Opti\Opti3'])
-    rmpath([pwd '\lineSLAM\Opti\Opti2'])
-    addpath([pwd '\lineSLAM\Opti\Opti4'])
+function [outputArg1] = selectMode(mode,linux)
+%UNTITLED6 ï¿½Ë´ï¿½ï¿½ï¿½Ê¾ï¿½Ð¹Ø´Ëºï¿½ï¿½ï¿½ï¿½ï¿½ÕªÒª
+%   ï¿½Ë´ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ï¸Ëµï¿½ï¿½
+if linux==1
+    if mode=="mode1"
+        rmpath([pwd '/lineSLAM/Opti/Opti2'])
+        rmpath([pwd '/lineSLAM/Opti/Opti3'])
+        rmpath([pwd '/lineSLAM/Opti/Opti4'])
+        addpath([pwd '/lineSLAM/Opti/Opti1'])
+    elseif mode=="mode2"
+        rmpath([pwd '/lineSLAM/Opti/Opti1'])
+        rmpath([pwd '/lineSLAM/Opti/Opti3'])
+        rmpath([pwd '/lineSLAM/Opti/Opti4'])
+        addpath([pwd '/lineSLAM/Opti/Opti2'])
+    elseif mode=="mode3"
+        rmpath([pwd '/lineSLAM/Opti/Opti1'])
+        rmpath([pwd '/lineSLAM/Opti/Opti2'])
+        rmpath([pwd '/lineSLAM/Opti/Opti4'])
+        addpath([pwd '/lineSLAM/Opti/Opti3'])
+    elseif mode=="mode4"
+        rmpath([pwd '/lineSLAM/Opti/Opti1'])
+        rmpath([pwd '/lineSLAM/Opti/Opti3'])
+        rmpath([pwd '/lineSLAM/Opti/Opti2'])
+        addpath([pwd '/lineSLAM/Opti/Opti4'])
+    end
+else
+    if mode=="mode1"
+        rmpath([pwd '\lineSLAM\Opti\Opti2'])
+        rmpath([pwd '\lineSLAM\Opti\Opti3'])
+        rmpath([pwd '\lineSLAM\Opti\Opti4'])
+        addpath([pwd '\lineSLAM\Opti\Opti1'])
+    elseif mode=="mode2"
+        rmpath([pwd '\lineSLAM\Opti\Opti1'])
+        rmpath([pwd '\lineSLAM\Opti\Opti3'])
+        rmpath([pwd '\lineSLAM\Opti\Opti4'])
+        addpath([pwd '\lineSLAM\Opti\Opti2'])
+    elseif mode=="mode3"
+        rmpath([pwd '\lineSLAM\Opti\Opti1'])
+        rmpath([pwd '\lineSLAM\Opti\Opti2'])
+        rmpath([pwd '\lineSLAM\Opti\Opti4'])
+        addpath([pwd '\lineSLAM\Opti\Opti3'])
+    elseif mode=="mode4"
+        rmpath([pwd '\lineSLAM\Opti\Opti1'])
+        rmpath([pwd '\lineSLAM\Opti\Opti3'])
+        rmpath([pwd '\lineSLAM\Opti\Opti2'])
+        addpath([pwd '\lineSLAM\Opti\Opti4'])
+    end
 end
 end
 

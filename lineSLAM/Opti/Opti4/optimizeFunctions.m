@@ -16,7 +16,6 @@ for poseI=1:nPose
             n=line_c_predict.L.n;v=line_c_predict.L.v;
             n_=line_c{poseI,lineI}.L.n;v_=line_c{poseI,lineI}.L.v;
             err_i=[cross(v,n)/(v'*v)-cross(v_,n_)/(v_'*v_);cross(v,v_)];
-            
             jacobiErr_Lc=zeros(6,6);
             jacobiErr_Lc(1:3,1:3)=toCross(v)/(v'*v);
             jacobiErr_Lc(4:6,4:6)=-toCross(v_);
@@ -34,14 +33,16 @@ for poseI=1:nPose
             
             poseIdx=(poseI-1)*6+1;
             lineIdx=6*nPose+(lineI-1)*4+1;
-            
+            if isempty(find(isnan(H)))
             H(poseIdx:poseIdx+5,poseIdx:poseIdx+5) = H(poseIdx:poseIdx+5,poseIdx:poseIdx+5) + J_pose' * J_pose;
             H(poseIdx:poseIdx+5,lineIdx:lineIdx+3) = H(poseIdx:poseIdx+5,lineIdx:lineIdx+3) + J_pose' * J_line;
             H(lineIdx:lineIdx+3,poseIdx:poseIdx+5) = H(lineIdx:lineIdx+3,poseIdx:poseIdx+5) + J_line' * J_pose;
             H(lineIdx:lineIdx+3,lineIdx:lineIdx+3) = H(lineIdx:lineIdx+3,lineIdx:lineIdx+3) + J_line' * J_line;
             g(poseIdx:poseIdx+5) = g(poseIdx:poseIdx+5) - J_pose' * err_i;
             g(lineIdx:lineIdx+3) = g(lineIdx:lineIdx+3) - J_line' * err_i;
-            
+            if ~isempty(find(isnan(g)))
+                '123'
+            end
             e = e + norm(err_i);
         end
     end

@@ -1,5 +1,5 @@
 function [x] = logSE3(T)
-R=eye(3);Id3=eye(3);
+R=eye(3);
 V=eye(3);w_hat=zeros(3);
 Vt=T(1:3,4);
 w=zeros(3,1);
@@ -12,13 +12,20 @@ elseif cosine < -1
 end
 sine = sqrt(1.0-cosine*cosine);
 theta  = acos(cosine);
-sine=sin(theta);
+sine=abs(sin(theta));
 if( theta > 0.000001 )
-    w_hat = theta*(R-R')/(2.0*sine);
-    %w = invCross(w_hat);
-    w=invCross(logm(R));
+    [v e]=eig(R);
+    e=diag(e);
+    v=v(:,find(abs(e-1)==min(abs(e-1))));
+    w = v*theta;
+    if max(abs(expso3(w)-R))> 1e-5
+        w = -w;
+        if max(abs(expso3(w)-R))> 1e-5
+            'wr'
+        end
+    end
     s = toCross(w) / theta;
-    V = Id3 + s * (1.0-cosine) / theta + s * s * (theta - sine) / theta;
+    V = eye(3) + s * (1.0-cosine) / theta + s * s * (theta - sine) / theta;
 end
 t = inv(V) * Vt;
 x(1:3,1) = t;
@@ -26,13 +33,8 @@ x(4:6,1) = w;
 x=limitToPi_Li(x);
 end
 
-%%测试，so3李代数一定要模长小于pi
-%%clear r
-% for i=1:100000
+% for i=1:1000
 % x=randn(6,1);
-% if norm(x(4:6))>pi
-% x(4:6)=x(4:6)/norm(x(4:6))*abs(norm(x(4:6))-pi);
-% end
-% r(i)=norm(abs(logSE3(expse3(x))-x));
+% r(i)=norm(logSE3(expse3(x))-limitToPi_Li(x));
 % end
 % max(r)

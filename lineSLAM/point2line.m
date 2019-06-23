@@ -1,4 +1,5 @@
 function [plucker orth] = point2line(p0, p1,w)
+   %   不能过原点的直线
    if (nargin<3)
         w = 1;
    end
