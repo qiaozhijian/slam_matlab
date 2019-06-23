@@ -11,9 +11,16 @@ sine = sqrt(1.0-cosine*cosine);
 theta  = acos(cosine);
 sine=sin(theta);
 if( theta > 0.000001 )
-    w_hat = theta*(R-R')/(2.0*sine);
-    w = invCross(w_hat);
-    w=invCross(logm(R));
+    [v e]=eig(R);
+    e=diag(e);
+    v=v(:,find(abs(e-1)==min(abs(e-1))));
+    w = v*theta;
+    if max(max(abs(expso3(w)-R)))> 1e-5
+        w = -w;
+        if max(max(abs(expso3(w)-R)))> 1e-5
+            'wr'
+        end
+    end
 end
 x = w;
 x=limitToPi_Li(x);

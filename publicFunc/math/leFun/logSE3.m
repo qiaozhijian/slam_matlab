@@ -12,18 +12,22 @@ elseif cosine < -1
 end
 sine = sqrt(1.0-cosine*cosine);
 theta  = acos(cosine);
-sine=abs(sin(theta));
+sine=(sin(theta));
+if sine<0  %没有小于0的情况？
+'123'
+end
 if( theta > 0.000001 )
     [v e]=eig(R);
     e=diag(e);
     v=v(:,find(abs(e-1)==min(abs(e-1))));
     w = v*theta;
-    if max(abs(expso3(w)-R))> 1e-5
+    if max(max(abs(expso3(w)-R)))> 1e-5
         w = -w;
-        if max(abs(expso3(w)-R))> 1e-5
+        if max(max(abs(expso3(w)-R)))> 1e-5
             'wr'
         end
     end
+
     s = toCross(w) / theta;
     V = eye(3) + s * (1.0-cosine) / theta + s * s * (theta - sine) / theta;
 end
