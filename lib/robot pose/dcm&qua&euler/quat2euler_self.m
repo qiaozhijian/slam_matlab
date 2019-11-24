@@ -1,4 +1,4 @@
-function [ Rad ] = Quaternion_to_Euler( quaternion )
+function [ Rad ] = quat2euler_self( quaternion )
   
   sum=sqrt(quaternion(0+1)*quaternion(0+1)+quaternion(1+1)*quaternion(1+1)+quaternion(2+1)*quaternion(2+1)+quaternion(3+1)*quaternion(3+1));
   quaternion=quaternion/sum;

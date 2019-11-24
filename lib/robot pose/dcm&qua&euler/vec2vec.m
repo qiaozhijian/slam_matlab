@@ -1,6 +1,6 @@
-function [R] = Tfromv1v2(v1,v2)
+function [R] = vec2vec(v1,v2)
 %UNTITLED3 此处显示有关此函数的摘要
-%   此处显示详细说明
+%   输出向量v1到向量v2的旋转矩阵
 v1=v1/norm(v1);
 v2=v2/norm(v2);
 n=cross(v1,v2);
@@ -19,4 +19,3 @@ if err>0.0001
     end
 end
 end
-

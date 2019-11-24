@@ -1,4 +1,4 @@
-function [R] = Q_to_R(Q)
+function [R] = quat2dcm_self(Q)
   sum=sqrt(quaternion(0+1)*quaternion(0+1)+quaternion(1+1)*quaternion(1+1)+quaternion(2+1)*quaternion(2+1)+quaternion(3+1)*quaternion(3+1));
   quaternion=quaternion/sum;
   q0=quaternion(0+1);
