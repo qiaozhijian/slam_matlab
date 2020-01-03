@@ -10,4 +10,3 @@ function [R] = expso3(x)
         R=eye(3);
     end
 end
-
